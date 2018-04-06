@@ -1,0 +1,48 @@
+{
+	"people": [
+		{
+			"id": "1",
+			"firstName": "John",
+			"lastName": "Brown",
+			"age": 28
+		},
+		{
+			"id": "2",
+			"firstName": "Kevin",
+			"lastName": "White",
+			"age": 37
+		},
+		{
+			"id": "3",
+			"firstName": "Bob",
+			"lastName": "Ross",
+			"age": 13
+		},
+		{
+			"id": "4",
+			"firstName": "Safir",
+			"lastName": "Ali",
+			"age": 23
+		},
+		{
+			"id": "5",
+			"firstName": "Jeremy",
+			"lastName": "Lin",
+			"age": 48 
+		}
+	],
+	"todos": [
+		{
+			"id": 1,
+			"title": "Lab for Physics"
+		},
+		{
+			"id": 2,
+			"title": "Get milk"
+		},
+		{
+			"id": 3,
+			"title": "Watch \"The Wall\" show"
+		}
+	]
+}

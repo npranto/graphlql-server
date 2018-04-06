@@ -4,7 +4,8 @@
   "description": "A simple GraphQL server with CRUD operations",
   "main": "index.js",
   "scripts": {
-    "dev:server": "sudo nodemon index.js"
+    "dev:server": "sudo nodemon index.js",
+    "json:server": "json-server --watch db.json"
   },
   "keywords": [
     "graphlQL"
@@ -12,9 +13,11 @@
   "author": "Nazmuz Shakib Pranto <npranto@gmail.com> (https://github.com/npranto)",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.18.0",
     "express": "^4.16.3",
     "express-graphql": "^0.6.12",
     "graphql": "^0.13.2",
+    "json-server": "^0.12.1",
     "npm": "^5.8.0"
   }
 }
