@@ -89,6 +89,80 @@ const TodoType = new GraphQLObjectType({
 	}
 })
 
+const mutation = new GraphQLObjectType({
+	name: 'Mutation',
+	fields: {
+		addPerson: {
+			type: PersonType,
+			args: {
+				firstName: {
+					type: new GraphQLNonNull(GraphQLString)
+				},
+				lastName: {
+					type: new GraphQLNonNull(GraphQLString)
+				},
+				age: {
+					type: new GraphQLNonNull(GraphQLInt)
+				}
+			},
+			resolve: (parentValue, args) => {
+				return axios.post(`http://localhost:3000/people`, {
+					firstName: args.firstName,
+					lastName: args.lastName,
+					age: args.age
+				}).then(res => res.data);
+			}
+		},
+		addTodo: {
+			type: TodoType,
+			args: {
+				title: {
+					type: new GraphQLNonNull(GraphQLString)
+				}
+			},
+			resolve: (parentValue, args) => {
+				return axios.post(`http://localhost:3000/todos`, {
+					title: args.title
+				}).then(res => res.data);
+			}
+		},
+		updatePerson: {
+			type: PersonType,
+			args: {
+				id: {
+					type: GraphQLString,
+				},
+				firstName: {
+					type: GraphQLString
+				},
+				lastName: {
+					type: GraphQLString
+				},
+				age: {
+					type: GraphQLInt
+				}
+			},
+			resolve: (parentValue, args) => {
+				return axios.patch(`http://localhost:3000/people/${args.id}`, {
+					...args
+				}).then(res => res.data)
+			}
+		},
+		deletePerson: {
+			type: PersonType,
+			args: {
+				id: {
+					type: new GraphQLNonNull(GraphQLString),
+				}
+			},
+			resolve: (parentValue, args) => {
+				return axios.delete(`http://localhost:3000/people/${args.id}`)
+					.then(res => res.data)
+			}
+		}
+	}
+})
+
 const Root = new GraphQLObjectType({
 	name: 'Root',
 	fields: {
@@ -148,7 +222,8 @@ const Root = new GraphQLObjectType({
 })
 
 const Schema = new GraphQLSchema({
-	query: Root
+	query: Root,
+	mutation: mutation
 })
 
 module.exports = Schema;
